@@ -9,8 +9,19 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-    <model-viewer style="width: 50vw; height: 100vh; padding: 0; margin: 0; position: absolute; left: 0; top: 0" src="maloof1.glb" camera-orbit="49.14deg 147.4deg 2347m" camera-controls auto-rotate></model-viewer>
-        <model-viewer style="width: 50vw; height: 100vh; padding: 0; margin: 0; position: absolute; left: 50vw; top: 0;" src="maloof2.glb" camera-orbit="49.14deg 147.4deg 2347m" camera-controls auto-rotate></model-viewer>
-
+    <model-viewer id="model1" style="width: 50vw; height: 100vh; padding: 0; margin: 0; position: absolute; left: 0; top: 0" src="maloof1.glb" camera-orbit="49.14deg 147.4deg 2347m" camera-controls auto-rotate></model-viewer>
+    <model-viewer id="model2" style="width: 50vw; height: 100vh; padding: 0; margin: 0; position: absolute; left: 50vw;" src="maloof2.glb" camera-orbit="49.14deg 147.4deg 2347m" camera-controls auto-rotate></model-viewer>
+    <script type="text/javascript" charset="utf-8">
+        if (window.innerWidth < window.innerHeight) {
+            document.getElementById("model1").style.width = "100vw";
+            document.getElementById("model2").style.width = "100vw";
+            document.getElementById("model1").style.height = "100vw";
+            document.getElementById("model2").style.height = "100vw";
+            document.getElementById("model2").style.bottom = "0";
+            document.getElementById("model2").style.left = "0";
+        } else {
+            document.getElementById("model2").style.top = "0";
+        }
+    </script>>
   </body>
 </html>
