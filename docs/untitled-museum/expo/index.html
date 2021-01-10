@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNTITLED MUSEUM</title>
+    <link rel="stylesheet" href="glightbox.min.css" />
+    <style type="text/css" media="screen">
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        #image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width:80vw;
+            max-height:100%;
+            z-index: 2
+        }
+        button {
+            all: unset;
+            color: #000;
+            -webkit-text-fill-color: #000;
+            cursor: pointer;
+            position: absolute;
+            font-size: 10vw; 
+            z-index: 3;
+            top: 45vh;
+            text-shadow: 2px 2px white;
+            width: 10vw;
+            font-family: monospace;
+            text-align: center;
+        }
+        .glightbox-clean .gslide-title {
+            font-size: 2vw;
+            font-family: monospace;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <img id="image" src="1.png" alt="Untitled Museum">
+    <map id="2" name="2">
+        <area onclick="show(1);" href="#" coords="670,980,531,678" shape="rect">
+    </map>
+    <map id="6" name="6">
+        <area onclick="show(2);" href="#" coords="1161,685,1409,1077" shape="rect">
+        <area onclick="show(3);" href="#" coords="862,542,948,734" shape="rect">
+    </map>
+    <map id="7" name="7">
+        <area onclick="show(3);" href="#" coords="1035,832,954,628" shape="rect">
+    </map>
+    <map id="8" name="8">
+        <area onclick="show(3);" href="#" coords="1064,508,1197,853" shape="rect">
+    </map>
+    <map id="9" name="9">
+        <area onclick="show(3);" href="#" coords="1160,487,1383,1042" shape="rect">
+        <area onclick="show(4, 'Uit de brand/hand gelopen');" href="#" coords="775,569,817,635" shape="rect">
+    </map>
+    <map id="10" name="10">
+        <area onclick="show(4, 'Uit de brand/hand gelopen');" href="#" coords="838,561,884,649" shape="rect">
+    </map>
+    <map id="11" name="11">
+        <area onclick="show(4, 'Uit de brand/hand gelopen');" href="#" coords="828,586,898,677" shape="rect">
+    </map>
+    <map id="12" name="12">
+        <area onclick="show(4, 'Uit de brand/hand gelopen');" href="#" coords="882,630,952,752" shape="rect">
+    </map>
+    <map id="13" name="13">
+        <area onclick="show(4, 'Uit de brand/hand gelopen');" href="#" coords="936,642,1041,848" shape="rect">
+    </map>
+    <map id="14" name="14">
+        <area onclick="show(4, 'Uit de brand/hand gelopen');" href="#" coords="1118,721,1280,1049" shape="rect">
+    </map>
+    <map id="16" name="16">
+        <area onclick="show(5);" href="#" coords="324,560,520,946" shape="rect">
+    </map>
+    <map id="17" name="17">
+        <area onclick="show(5);" href="#" coords="107,568,327,1048" shape="rect">
+    </map>
+    <map id="22" name="22">
+        <area onclick="show(6, 'Proost');" href="#" coords="898,676,1012,876" shape="rect">
+    </map>
+    <map id="23" name="23">
+        <area onclick="show(6, 'Proost');" href="#" coords="954,639,1140,986" shape="rect">
+    </map>
+    <map id="24" name="24">
+        <area onclick="show(6, 'Proost');" href="#" coords="1230,855,1422,1079" shape="rect">
+    </map>
+    <map id="27" name="27">
+        <area onclick="show(7);" href="#" coords="424,602,579,815" shape="rect">
+    </map>
+    <map id="28" name="28">
+        <area onclick="show(7);" href="#" coords="44,686,292,1051" shape="rect">
+    </map>
+
+    <button style="left: 0vw;" onclick="backward();"><</button>
+    <button style="right: 0vw;" onclick="forward();">></button>
+
+    <script src="jquery.min.js"></script>
+    <script src="imageMapResizer.min.js"></script>
+
+    <script src="glightbox.min.js"></script>
+    <script type="text/javascript">
+        var image = document.getElementById("image");
+        const lightbox = GLightbox({
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: true
+        });
+        window.counter = 1;
+        function forward() {
+            if (!(window.counter == 29)) {
+                window.counter++;
+                check();
+            }
+            check();
+        }
+        function backward() {
+            if (!(window.counter == 1)) {
+                window.counter--;
+                check();
+            }
+        }
+        function check() {
+            image.src = window.counter + ".png"
+            switch (window.counter) {
+                case 2:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 16:
+                case 17:
+                case 22:
+                case 23:
+                case 24:
+                case 27:
+                case 28:
+                    image.useMap = "#" + window.counter;
+                    break;
+                default:
+                    image.removeAttribute("usemap");
+                    break;
+            }
+            $('#' + window.counter).imageMapResize();
+        }
+        function show(number, title) {
+            if (title == undefined) {
+                const myGallery = GLightbox({
+                    elements: [
+                        {
+                            'href': number + '/1.png',
+                            'type': 'image'
+                        },
+                        {
+                            'href': number + '/2.png',
+                            'type': 'image'
+                        },
+                        {
+                            'href': number + '/3.png',
+                            'type': 'image'
+                        }
+                    ],
+                    openEffect: 'none',
+                    closeEffect: 'none',
+                    slideEffect: 'none',
+                    loop: true
+                });
+                myGallery.open();
+            } else {
+                const myGallery = GLightbox({
+                    elements: [
+                        {
+                            'href': number + '/1.png',
+                            'type': 'image',
+                            'title': title
+                        },
+                        {
+                            'href': number + '/2.png',
+                            'type': 'image',
+                            'title': title
+                        },
+                        {
+                            'href': number + '/3.png',
+                            'type': 'image',
+                            'title': title
+                        }
+                    ],
+                    openEffect: 'none',
+                    closeEffect: 'none',
+                    slideEffect: 'none',
+                    loop: true
+                });
+                myGallery.open();
+            }
+        }
+    </script>
+</body>
+</html>
